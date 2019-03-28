@@ -6,10 +6,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebFlux;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Profile;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -20,15 +22,19 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringRunner.class)
 @SpringBootTest(
         classes = SpringContractExampleApplication.class,
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-        properties = {
-                "server.port=0",
-                "eureka.client.enabled=false",
-                "spring.cloud.config.failFast=false"
-        }
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
-@AutoConfigureWebTestClient
+@AutoConfigureMockMvc
 @AutoConfigureStubRunner
-@Profile("stub")
+@ActiveProfiles("stub")
 public abstract class AbstractDnocmTest {
+
+    @Autowired
+    private WebApplicationContext context;
+
+    @Before
+    public void setup(){
+        RestAssuredMockMvc.webAppContextSetup(context);
+    }
+
 }

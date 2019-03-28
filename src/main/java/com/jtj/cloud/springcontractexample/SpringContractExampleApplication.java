@@ -33,7 +33,7 @@ public class SpringContractExampleApplication {
 
     @GetMapping("fromNone")
     public Book fromNone(){
-        return noneService.getYamlBook("从入门到删库！",9999);
+        return noneService.getYamlBook("从入库到精通",666);
     }
 
 }

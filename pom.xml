@@ -56,7 +56,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -96,11 +96,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>io.projectreactor</groupId>
-            <artifactId>reactor-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
             <scope>test</scope>
@@ -108,11 +103,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-contract-verifier</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>spring-web-test-client</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -140,7 +130,6 @@
                 <artifactId>spring-cloud-contract-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <testMode>EXPLICIT</testMode>
                     <baseClassMappings>
                         <baseClassMapping>
                             <contractPackageRegex>.*</contractPackageRegex>
