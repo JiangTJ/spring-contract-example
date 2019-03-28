@@ -1,7 +1,6 @@
 package com.jtj.cloud.springcontractexample;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +32,7 @@ public class SpringContractExampleApplication {
 
     @GetMapping("fromNone")
     public Book fromNone(){
-        return noneService.getYamlBook("从入门到删库！",9999);
+        return noneService.getYamlBook("从入库到精通",666);
     }
 
 }

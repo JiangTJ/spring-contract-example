@@ -13,8 +13,8 @@ public class SpringContractExampleApplicationTests extends AbstractDnocmTest {
     public void contextLoads() {
         client.get().uri("/fromNone").exchange()
                 .expectStatus().isOk()
-                .expectBody(String.class)
-                .isEqualTo("Hello World");
+                .expectBody(Book.class)
+                .isEqualTo(new Book("从入库到精通",666));
     }
 
 }
