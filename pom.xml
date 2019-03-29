@@ -19,19 +19,6 @@
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
     </properties>
 
-    <profiles>
-        <profile>
-            <id>deploy</id>
-            <distributionManagement>
-                <repository>
-                    <id>bintray-authu-maven-repo</id>
-                    <name>authu-maven-repo</name>
-                    <url>https://api.bintray.com/maven/jiangtj/maven/spring-contract-example/;publish=1</url>
-                </repository>
-            </distributionManagement>
-        </profile>
-    </profiles>
-
     <repositories>
         <repository>
             <snapshots><enabled>false</enabled></snapshots>
@@ -119,26 +106,81 @@
         </dependencies>
     </dependencyManagement>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-contract-maven-plugin</artifactId>
-                <extensions>true</extensions>
-                <configuration>
-                    <baseClassMappings>
-                        <baseClassMapping>
-                            <contractPackageRegex>.*</contractPackageRegex>
-                            <baseClassFQN>com.jtj.cloud.springcontractexample.AbstractDnocmTest</baseClassFQN>
-                        </baseClassMapping>
-                    </baseClassMappings>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+
+    <profiles>
+
+        <profile>
+            <id>frog</id>
+            <distributionManagement>
+                <repository>
+                    <id>bintray-authu-maven-repo</id>
+                    <name>authu-maven-repo</name>
+                    <url>https://api.bintray.com/maven/jiangtj/maven/spring-contract-example/;publish=1</url>
+                </repository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.springframework.cloud</groupId>
+                        <artifactId>spring-cloud-contract-maven-plugin</artifactId>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <baseClassMappings>
+                                <baseClassMapping>
+                                    <contractPackageRegex>.*</contractPackageRegex>
+                                    <baseClassFQN>com.jtj.cloud.springcontractexample.AbstractDnocmTest</baseClassFQN>
+                                </baseClassMapping>
+                            </baseClassMappings>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>git</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.springframework.cloud</groupId>
+                        <artifactId>spring-cloud-contract-maven-plugin</artifactId>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <baseClassMappings>
+                                <baseClassMapping>
+                                    <contractPackageRegex>.*</contractPackageRegex>
+                                    <baseClassFQN>com.jtj.cloud.springcontractexample.AbstractDnocmTest</baseClassFQN>
+                                </baseClassMapping>
+                            </baseClassMappings>
+                            <contractsRepositoryUrl>git://git@github.com:JiangTJ/spring-contract-example-git-repo.git</contractsRepositoryUrl>
+                            <contractDependency>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>${project.artifactId}</artifactId>
+                                <version>c</version>
+                            </contractDependency>
+                            <contractsMode>REMOTE</contractsMode>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>pushStubsToScm</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
 
 </project>

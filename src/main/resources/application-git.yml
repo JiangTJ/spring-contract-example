@@ -1,0 +1,11 @@
+eureka:
+  client:
+    enabled: false
+
+stubrunner:
+  ids:
+    - com.jtj.cloud:spring-contract-example:1.0.0
+  ids-to-service-ids:
+    spring-contract-example: none-service
+  stubs-mode: remote
+  repositoryRoot: "git://git@github.com:JiangTJ/spring-contract-example-git-repo.git"
