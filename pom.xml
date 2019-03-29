@@ -17,6 +17,7 @@
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+        <spring-cloud-contract.version>2.1.1.RELEASE</spring-cloud-contract.version>
     </properties>
 
     <profiles>
@@ -105,6 +106,11 @@
             <artifactId>spring-cloud-starter-contract-verifier</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-contract-pact</artifactId>
+            <scope>test</scope>
+        </dependency>-->
     </dependencies>
 
     <dependencyManagement>
@@ -129,6 +135,7 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-contract-maven-plugin</artifactId>
                 <extensions>true</extensions>
+                <version>${spring-cloud-contract.version}</version>
                 <configuration>
                     <baseClassMappings>
                         <baseClassMapping>
@@ -136,7 +143,26 @@
                             <baseClassFQN>com.jtj.cloud.springcontractexample.AbstractDnocmTest</baseClassFQN>
                         </baseClassMapping>
                     </baseClassMappings>
+                    <!-- pact -->
+                    <!-- We want to pick contracts from a Git repository -->
+                    <!--<contractsRepositoryUrl>pact://http://localhost:8085</contractsRepositoryUrl>-->
+                    <contractsRepositoryUrl>pact://https://dnocm.pact.dius.com.au:443</contractsRepositoryUrl>
+                    <contractsRepositoryUsername>ry98llrdnop7rmknd6f7q</contractsRepositoryUsername>
+                    <contractsRepositoryPassword>xeaq91l8hxdxa5bsh7c19m</contractsRepositoryPassword>
+                    <contractDependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>${project.artifactId}</artifactId>
+                        <version>${project.version}</version>
+                    </contractDependency>
+                    <contractsMode>REMOTE</contractsMode>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework.cloud</groupId>
+                        <artifactId>spring-cloud-contract-pact</artifactId>
+                        <version>${spring-cloud-contract.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

@@ -1,0 +1,11 @@
+eureka:
+  client:
+    enabled: false
+
+stubrunner:
+  ids:
+    - com.jtj.cloud:spring-contract-example:1.0.0
+  ids-to-service-ids:
+    spring-contract-example: none-service
+  stubs-mode: remote
+  repositoryRoot: "pact://http://ry98llrdnop7rmknd6f7q:xeaq91l8hxdxa5bsh7c19m@dnocm.pact.dius.com.au"
