@@ -6,3 +6,6 @@
 - [Git](https://github.com/JiangTJ/spring-contract-example/tree/git)
 - [Git Local](https://github.com/JiangTJ/spring-contract-example/tree/git-local)
 - [Pact](https://github.com/JiangTJ/spring-contract-example/tree/pact)
+
+还有个Webflux的例子，但集成不是很好
+- [Webflux](https://github.com/JiangTJ/spring-contract-example/tree/webflux)
