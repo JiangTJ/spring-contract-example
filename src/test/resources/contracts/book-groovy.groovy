@@ -8,6 +8,8 @@ Contract.make {
     urlPath('/groovy') {
       queryParameters {
         parameter "name": value(consumer(regex(nonEmpty())), producer("从入门到弃坑"))
+        parameter "n1": value(anyNonEmptyString())
+        parameter "n2": value(consumer(optional(regex(number()))), producer("1"))
       }
     }
   }

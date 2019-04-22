@@ -5,10 +5,13 @@ request:
     name: "从入库到精通"
     price: 666
   matchers:
-    url:
     queryParameters:
-      - {key: name, type: matching, value: "[\\S\\s]+"}
-      - {key: price, type: matching, value: '^[0-9]{1,}$'}
+      - key: name
+        type: matching
+        value: '[\\S\\s]+'
+      - key: price
+        type: matching
+        value: '^[0-9]{1,}$'
 response:
   status: 200
   body:
